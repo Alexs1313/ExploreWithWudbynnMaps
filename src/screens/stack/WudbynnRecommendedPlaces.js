@@ -1,6 +1,7 @@
 import {
   Dimensions,
   Image,
+  Platform,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -42,10 +43,20 @@ const WudbynnRecommendedPlaces = ({ route }) => {
               autoPlay
               style={{ width: 550, height: 470 }}
             />
-            <Image
-              source={require('../../assets/images/logo.png')}
-              style={styles.logo}
-            />
+            {Platform.OS === 'ios' ? (
+              <Image
+                source={require('../../assets/images/logo.png')}
+                style={styles.logo}
+              />
+            ) : (
+              <Image
+                source={require('../../assets/images/crownIcon.png')}
+                style={[
+                  styles.logo,
+                  { width: 237, height: 237, borderRadius: 23.14 },
+                ]}
+              />
+            )}
 
             <View style={{ alignItems: 'center' }}>
               <LottieView

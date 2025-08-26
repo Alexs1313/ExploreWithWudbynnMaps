@@ -1,4 +1,12 @@
-import { Dimensions, Image, Share, StyleSheet, Text, View } from 'react-native';
+import {
+  Dimensions,
+  Image,
+  Platform,
+  Share,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import Layout from '../../components/Layout';
 import GradientBordersContainer from '../../components/GradientBordersContainer';
 import GradientBtnS from '../../components/GradientBtnS';
@@ -70,13 +78,20 @@ fingertips.`,
       <View style={styles.container}>
         <GradientBordersContainer style={{ margin: 2 }}>
           <View style={styles.infoWrapper}>
-            <Image source={require('../../assets/images/homeIcon.png')} />
+            {Platform.OS === 'ios' ? (
+              <Image source={require('../../assets/images/homeIcon.png')} />
+            ) : (
+              <Image
+                source={require('../../assets/images/crownIcon.png')}
+                style={{ width: 157, height: 157 }}
+              />
+            )}
             <Text style={styles.infoText}>
-              Explore With Wudbynn Maps is your personal guide to discovering
-              the natural wonders and hidden gems of Canada. From breathtaking
-              mountain trails to serene lakeshores, the app helps you navigate
-              and explore with ease, bringing adventure right to your
-              fingertips.
+              Explore With {Platform.OS === 'android' && 'Crown'} Wudbynn Maps
+              is your personal guide to discovering the natural wonders and
+              hidden gems of Canada. From breathtaking mountain trails to serene
+              lakeshores, the app helps you navigate and explore with ease,
+              bringing adventure right to your fingertips.
             </Text>
           </View>
           <View style={{ alignItems: 'center' }}>

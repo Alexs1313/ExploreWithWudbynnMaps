@@ -1,6 +1,6 @@
 import LottieView from 'lottie-react-native';
 import Layout from './Layout';
-import { Dimensions, Image, StyleSheet, View } from 'react-native';
+import { Dimensions, Image, Platform, StyleSheet, View } from 'react-native';
 
 const { height } = Dimensions.get('window');
 
@@ -13,10 +13,20 @@ const Loader = () => {
           autoPlay
           style={{ width: 550, height: 470 }}
         />
-        <Image
-          source={require('../assets/images/logo.png')}
-          style={styles.logo}
-        />
+        {Platform.OS === 'ios' ? (
+          <Image
+            source={require('../assets/images/logo.png')}
+            style={styles.logo}
+          />
+        ) : (
+          <Image
+            source={require('../assets/images/crownIcon.png')}
+            style={[
+              styles.logo,
+              { width: 237, height: 237, borderRadius: 23.14 },
+            ]}
+          />
+        )}
 
         <View style={{ alignItems: 'center' }}>
           <Image
